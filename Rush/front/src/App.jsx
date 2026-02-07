@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import './App.css'
 
+// Mettre une compteur point reussie point louper
+// score borde
+
 function App() {
   const [count, setCount] = useState(0)
 

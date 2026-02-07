@@ -53,8 +53,24 @@
 }
 
 .connection{
-  padding: 150px;
-  width: 50% 
+  padding: 20px;
+  width: 60%; 
   line-height: 100%;
-  text-align: center;
+}
+
+.encadreC{
+  border: 2px solid #ffffff;
+  border-radius: 12px;
+  padding: 3rem;
+  padding-right: 9rem;
+  width: 15rem ;
+  background: #1f1e1e;
+  flex:1;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 30rem;
+}
+.espace{
+  margin-top: 5rem;
 }
