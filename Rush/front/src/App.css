@@ -54,7 +54,7 @@
 
 .connection{
   padding: 20px;
-  width: 60%; 
+  width: 50%; 
   line-height: 100%;
 }
 
@@ -69,7 +69,7 @@
   display:flex;
   justify-content: center;
   align-items: center;
-  margin-left: 30rem;
+  margin-left: 27rem;
 }
 .espace{
   margin-top: 5rem;

@@ -1,8 +1,6 @@
 import { useState } from 'react'
-import ButtonS from './ButtonS'
-import ConnectionW from './ConnectionW'
-import ScoreBord from './ScoreBord'
 import { Link } from "react-router-dom";
+
 
 // Mettre une compteur point reussie point louper
 // score borde
@@ -21,13 +19,12 @@ function Game() {
       </div>
       <div className="card">
         <div className="button">
-          <button onClick={() => setCount((count) => count + 1)}>
-            P.Diddy
-          </button>
-
-          <button onClick={() => setCount((count) => count + 1)}>
+        <button onClick={() => setCount((count) => count + 1)}>
+          P.Diddy
+        </button>
+        <button onClick={() => setCount((count) => count + 1)}>
             Epstein
-          </button>
+        </button>
         </div>  
       </div>
       <Link to='/scorebord'>Look yoour scorebord</Link>
