@@ -6,6 +6,6 @@ import ConnectionW from './ConnectionW.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ConnectionW />
+    <App />
   </StrictMode>,
 )

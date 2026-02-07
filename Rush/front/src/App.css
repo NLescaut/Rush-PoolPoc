@@ -44,8 +44,17 @@
 
 .encadre{
   border: 2px solid #888;
+    justify-content: center;
+  align-content: center;
   border-radius: 12px;
   padding: 150px;
   width: 50% ;
   background: #000;
+}
+
+.connection{
+  padding: 150px;
+  width: 50% 
+  line-height: 100%;
+  text-align: center;
 }
