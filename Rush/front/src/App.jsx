@@ -11,7 +11,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/connection' element ={<ConnectionW/>}/>
-        <Route path='/game' element ={<Game/>}/>
+        <Route path='/Game' element ={<Game/>}/>
         <Route path='/scorebord'element ={<ScoreBord/>}/>
       </Routes>
     </BrowserRouter>

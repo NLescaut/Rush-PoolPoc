@@ -1,60 +1,64 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const API = "http://localhost:4000";
+const API = "http://localhost:4000"; // backend
 
-function Game() {
+export default function Game() {
   const [score, setScore] = useState(0);
   const [card, setCard] = useState(null); // { id, url }
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
+  const [feedback, setFeedback] = useState("");
 
-  async function loadRandom() {
+  async function fetchRandom() {
     setLoading(true);
-    setMessage("");
+    setFeedback("");
     try {
       const res = await fetch(`${API}/api/game/random`);
-      if (!res.ok) throw new Error("Failed to load random");
       const data = await res.json();
+      if (!res.ok) throw new Error(data?.error || "Random failed");
       setCard(data);
     } catch (e) {
-      setMessage("Erreur: impossible de charger une image.");
+      setCard(null);
+      setFeedback("❌ Impossible de charger une image (random).");
     } finally {
       setLoading(false);
     }
   }
 
-  async function submitAnswer(answer) {
+  async function answer(label) {
     if (!card) return;
     setLoading(true);
-    setMessage("");
+    setFeedback("");
     try {
       const res = await fetch(`${API}/api/game/answer`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ cardId: card.id, answer }),
+        body: JSON.stringify({ cardId: card.id, answer: label }),
       });
+
       const data = await res.json();
       if (!res.ok) throw new Error(data?.error || "Answer failed");
 
       if (data.correct) {
-        setScore((s) => s + (data.points ?? 0));
-        setMessage(`✅ Correct (+${data.points ?? 0})`);
+        const pts = data.points ?? 0;
+        setScore((s) => s + pts);
+        setFeedback(`✅ Correct (+${pts})`);
       } else {
-        setMessage(`❌ Faux (bonne réponse: ${data.correctLabel})`);
+        setFeedback(`❌ Faux (bonne réponse: ${data.correctLabel})`);
       }
 
-      // charge la prochaine image
-      await loadRandom();
+      // petite pause visuelle avant d’enchaîner
+      setTimeout(() => {
+        fetchRandom();
+      }, 400);
     } catch (e) {
-      setMessage("Erreur: réponse non envoyée.");
-    } finally {
+      setFeedback("❌ Erreur lors de l’envoi de la réponse.");
       setLoading(false);
     }
   }
 
   useEffect(() => {
-    loadRandom();
+    fetchRandom();
   }, []);
 
   return (
@@ -63,17 +67,28 @@ function Game() {
 
       <div className="card">
         <p>Score : {score}</p>
-        {message && <p>{message}</p>}
+        {feedback && <p>{feedback}</p>}
       </div>
 
-      <div className="encadre" style={{ minHeight: 260, display: "flex", alignItems: "center", justifyContent: "center" }}>
+      <div
+        className="encadre"
+        style={{
+          minHeight: 320,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          borderRadius: 12,
+          overflow: "hidden",
+        }}
+      >
         {loading && <p>Chargement...</p>}
 
         {!loading && card?.url && (
           <img
             src={`${API}${card.url}`}
             alt="card"
-            style={{ maxWidth: "100%", maxHeight: 320, borderRadius: 12 }}
+            style={{ maxWidth: "100%", maxHeight: 320, objectFit: "contain" }}
+            onError={() => setFeedback("❌ L’image n’est pas accessible (URL/uploads).")}
           />
         )}
 
@@ -81,12 +96,12 @@ function Game() {
       </div>
 
       <div className="card">
-        <div className="button">
-          <button disabled={loading || !card} onClick={() => submitAnswer("LINKEDIN")}>
+        <div className="button" style={{ display: "flex", gap: 12, justifyContent: "center" }}>
+          {/* Texte du jeu, mais label envoyé = DB */}
+          <button disabled={loading || !card} onClick={() => answer("LINKEDIN")}>
             P.Diddy
           </button>
-
-          <button disabled={loading || !card} onClick={() => submitAnswer("INTERPOL")}>
+          <button disabled={loading || !card} onClick={() => answer("INTERPOL")}>
             Epstein
           </button>
         </div>
@@ -100,5 +115,3 @@ function Game() {
     </>
   );
 }
-
-export default Game;

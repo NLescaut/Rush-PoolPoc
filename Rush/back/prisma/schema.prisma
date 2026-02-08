@@ -10,8 +10,8 @@ datasource db {
 }
 
 enum Label {
-  LINKEDIN
-  INTERPOL
+  P.DIDDY
+  EPSTEIN
 }
 
 model User {
