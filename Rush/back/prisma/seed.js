@@ -14,6 +14,18 @@ async function main() {
     { url: "/imgD/beyonce.png", label: "P.DIDDY" },
     { url: "/imgD/cassie-ventura.png", label: "P.DIDDY" },
     { url: "/imgD/interpol.jpg", label: "INTERPOL" },
+    { url: "/imgD/byonce.png", label: "P.DIDDY" },
+    { url: "/imgE/billclinton.jpg", label: "EPSTEIN" },
+    { url: "/imgE/billgates.jpg", label: "EPSTEIN" },
+    { url: "/imgE/davidcopperfieldjpg", label: "EPSTEIN" },
+    { url: "/imgE/donaldtrump.jpg", label: "EPSTEIN" },
+    { url: "/imgE/ghislainmaxwell.jpg", label: "EPSTEIN" },
+    { url: "/imgE/jacklang.jpg", label: "EPSTEIN" },
+    { url: "/imgE/MJ.jpg", label: "EPSTEIN" },
+    { url: "/imgE/oliviercolom.jpg", label: "EPSTEIN" },
+    { url: "/imgE/petermandelson.jpg", label: "EPSTEIN" },
+    { url: "/imgE/princeandrew.jpg", label: "EPSTEIN" },
+    { url: "/imgE/stephenhawking.jpg", label: "EPSTEIN" },
   ];
 
   for (const img of images) {
