@@ -11,7 +11,8 @@ async function main() {
   // Seed images (remplace par TES fichiers réellement dans /uploads)
   const images = [
     { url: "/imgD/ashtonkutcher.jpg", label: "P.DIDDY" },
-    { url: "/imgD/byonce.png", label: "P.DIDDY" },
+    { url: "/imgD/beyonce.png", label: "P.DIDDY" },
+    { url: "/imgD/cassie-ventura.png", label: "P.DIDDY" },
     { url: "/imgD/interpol.jpg", label: "INTERPOL" },
   ];
 
