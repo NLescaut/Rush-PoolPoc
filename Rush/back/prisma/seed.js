@@ -10,9 +10,9 @@ async function main() {
  
   // Seed images (remplace par TES fichiers réellement dans /uploads)
   const images = [
-    { url: "/uploads/link1.jpg", label: "LINKEDIN" },
-    { url: "/uploads/link2.png", label: "LINKEDIN" },
-    { url: "/uploads/inter1.jpg", label: "INTERPOL" },
+    { url: "/imgD/ashtonkutcher.jpg", label: "P.DIDDY" },
+    { url: "/imgD/byonce.png", label: "P.DIDDY" },
+    { url: "/imgD/interpol.jpg", label: "INTERPOL" },
   ];
 
   for (const img of images) {
