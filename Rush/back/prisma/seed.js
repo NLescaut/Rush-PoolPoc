@@ -12,6 +12,7 @@ async function main() {
   // Seed images (remplace par TES fichiers réellement dans /uploads)
   const images = [
     { url: "/imgD/ashtonkutcher.jpg", label: "P_DIDDY" },
+    { url: "/imgD/kevinhart.jpg", label: "P_DIDDY" },
     { url: "/imgD/beyonce.jpg", label: "P_DIDDY" },
     { url: "/imgD/cassie-ventura.jpg", label: "P_DIDDY" },
     { url: "/imgD/christian-combs.jpg", label: "P_DIDDY" },
@@ -37,6 +38,12 @@ async function main() {
     { url: "/imgE/jacklang.jpg", label: "EPSTEIN" },
     { url: "/imgE/MJ.jpg", label: "EPSTEIN" },
     { url: "/imgE/jlbrunel.jpg", label: "EPSTEIN" },
+    { url: "/imgE/richardbranson.jpg", label: "EPSTEIN" },
+    { url: "/imgE/mickjagger.jpg", label: "EPSTEIN" },
+    { url: "/imgE/mettmarit.jpg", label: "EPSTEIN" },
+    { url: "/imgE/kevinspacey.jpg", label: "EPSTEIN" },
+    { url: "/imgE/howardlutnik.jpg", label: "EPSTEIN" },
+    { url: "/imgE/christucker.jpg", label: "EPSTEIN" },
     { url: "/imgE/oliviercolom.jpg", label: "EPSTEIN" },
     { url: "/imgE/petermandelson.jpg", label: "EPSTEIN" },
     { url: "/imgE/princeandrew.jpg", label: "EPSTEIN" },
