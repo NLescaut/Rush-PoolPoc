@@ -1,0 +1,34 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const cors_1 = __importDefault(require("cors"));
+const dotenv_1 = __importDefault(require("dotenv"));
+const path_1 = __importDefault(require("path"));
+const fs_1 = __importDefault(require("fs"));
+const auth_1 = __importDefault(require("./routes/auth"));
+const game_1 = __importDefault(require("./routes/game"));
+const score_1 = __importDefault(require("./routes/score"));
+const upload_1 = __importDefault(require("./routes/upload"));
+const image_1 = __importDefault(require("./routes/image"));
+dotenv_1.default.config();
+const app = (0, express_1.default)();
+app.use((0, cors_1.default)({ origin: true, credentials: true }));
+app.use((0, cors_1.default)({ origin: "http://localhost:5173" }));
+app.use(express_1.default.json());
+const uploadDir = process.env.UPLOAD_DIR || path_1.default.resolve("uploads");
+if (!fs_1.default.existsSync(uploadDir))
+    fs_1.default.mkdirSync(uploadDir, { recursive: true });
+app.use("/uploads", express_1.default.static(uploadDir));
+app.get("/health", (req, res) => res.json({ ok: true }));
+app.use("/api/auth", auth_1.default);
+app.use("/api/game", game_1.default);
+app.use("/api/score", score_1.default);
+app.use("/api/upload", upload_1.default);
+app.use("/api/images", image_1.default);
+app.use("/imgD", express_1.default.static(path_1.default.resolve("imgD")));
+app.use("/imgE", express_1.default.static(path_1.default.resolve("imgE")));
+const port = Number(process.env.PORT || 4000);
+app.listen(port, () => console.log(`API running on http://localhost:${port}`));
