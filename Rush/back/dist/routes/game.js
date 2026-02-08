@@ -7,7 +7,7 @@ router.get("/random", async (_req, res) => {
     const count = await prisma_1.prisma.imageCard.count();
     if (count === 0)
         return res.status(404).json({ error: "No images in DB" });
-    const skip = Math.floor(Math.random() % count);
+    const skip = Math.floor(Math.random() * count);
     const card = await prisma_1.prisma.imageCard.findFirst({ skip, take: 1 });
     if (card === null)
         return res.status(500).json({ error: "Couldn't find a card" });
