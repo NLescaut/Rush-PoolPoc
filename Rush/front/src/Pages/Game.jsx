@@ -1,20 +1,50 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import {useQuery} from "@tanstack/react-query"
+import {
+  useQuery,
+  useQueryClient,
+} from '@tanstack/react-query'
 
 
 const API = "http://localhost:4000"; // backend
 
 export default function Game() {
   const [score, setScore] = useState(0);
+  const queryClient = useQueryClient()
   const {data:card , isPending, error} = useQuery({
     queryKey: ['random'],
     queryFn: () => fetch('http://localhost:4000/api/game/random').then(r => r.json()),
   })
-  console.log("card", card)
-  console.log(isPending)
-  console.log(error)
+ 
+  async function correct(name) {
+    if (card === undefined)
+      return
+    const paylod ={
+      cardId:card.id,
+      answer: name
+    }
+    fetch('http://localhost:4000/api/game/answer')
+    const reponce  = await fetch('http://localhost:4000/api/game/answer', {
+      method:'POST',
+      body:JSON.stringify( paylod),
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+    
+    const result = await reponce.json()
+    console.log(result)
 
+    if (result.correct){
+      setScore(score+result.points)
+      queryClient.invalidateQueries({ queryKey: ['random'] })
+    }
+    else{
+      setScore(0)
+      queryClient.invalidateQueries({ queryKey: ['random'] })
+    }
+
+  }
 
 
   return (
@@ -53,10 +83,10 @@ export default function Game() {
 
       <div className="card">
         <div className="button" style={{ display: "flex", gap: 12, justifyContent: "center" }}>
-          <button disabled={isPending || !card} onClick={() => answer("P_DIDDY")}>
+          <button disabled={isPending || !card} onClick={() => correct("P_DIDDY")}>
             P.Diddy
           </button>
-          <button disabled={isPending || !card} onClick={() => answer("EPSTEIN")}>
+          <button disabled={isPending || !card} onClick={() => correct("EPSTEIN")}>
             Epstein
           </button>
         </div>

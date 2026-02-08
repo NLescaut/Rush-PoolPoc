@@ -17,6 +17,8 @@ const app = express();
 app.use(cors({ origin: true, credentials: true }));
 app.use(cors({ origin: "http://localhost:5173" }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 
 const uploadDir = process.env.UPLOAD_DIR || path.resolve("uploads");
 if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });

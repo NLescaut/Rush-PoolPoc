@@ -17,7 +17,6 @@ router.get("/random", async (_req, res) => {
 // body: { cardId: number, answer: "LINKEDIN"|"INTERPOL" }
 router.post("/answer", async (req, res) => {
   const { cardId, answer } = req.body as { cardId?: number; answer?: string };
-
   if (!cardId || !answer) return res.status(400).json({ error: "Missing fields" });
 
   const up = answer.toUpperCase();
