@@ -29,6 +29,8 @@ app.use("/api/game", gameRoutes);
 app.use("/api/score", scoreRoutes);
 app.use("/api/upload", uploadRoutes);
 app.use("/api/images", imagesRoutes);
+app.use("/imgD", express.static(path.resolve("imgD")));
+app.use("/imgE", express.static(path.resolve("imgE")));
 
 const port = Number(process.env.PORT || 4000);
 app.listen(port, () => console.log(`API running on http://localhost:${port}`));
